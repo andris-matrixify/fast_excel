@@ -24,7 +24,7 @@
 #endif
 #endif
 
-#define LXW_STR_MAX                      32767
+#define LXW_STR_MAX                      1000000
 #define LXW_BUFFER_SIZE                  4096
 #define LXW_PRINT_ACROSS                 1
 #define LXW_VALIDATION_MAX_TITLE_LENGTH  32
