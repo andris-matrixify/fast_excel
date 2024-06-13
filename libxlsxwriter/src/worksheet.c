@@ -24,7 +24,6 @@
 #endif
 #endif
 
-#define LXW_STR_MAX                      1000000
 #define LXW_BUFFER_SIZE                  4096
 #define LXW_PRINT_ACROSS                 1
 #define LXW_VALIDATION_MAX_TITLE_LENGTH  32
@@ -7797,9 +7796,6 @@ worksheet_write_string(lxw_worksheet *self,
     if (err)
         return err;
 
-    if (lxw_utf8_strlen(string) > LXW_STR_MAX)
-        return LXW_ERROR_MAX_STRING_LENGTH_EXCEEDED;
-
     if (!self->optimize) {
         /* Get the SST element and string id. */
         sst_element = lxw_get_sst_index(self->sst, string, LXW_FALSE);
@@ -8509,11 +8505,6 @@ worksheet_write_rich_string(lxw_worksheet *self,
     /* Close the temp file. */
     fclose(tmpfile);
 
-    if (lxw_utf8_strlen(rich_string) > LXW_STR_MAX) {
-        free((void *) rich_string);
-        return LXW_ERROR_MAX_STRING_LENGTH_EXCEEDED;
-    }
-
     if (!self->optimize) {
         /* Get the SST element and string id. */
         sst_element = lxw_get_sst_index(self->sst, rich_string, LXW_TRUE);
@@ -8569,9 +8560,6 @@ worksheet_write_comment_opt(lxw_worksheet *self,
 
     if (!text)
         return LXW_ERROR_NULL_PARAMETER_IGNORED;
-
-    if (lxw_utf8_strlen(text) > LXW_STR_MAX)
-        return LXW_ERROR_MAX_STRING_LENGTH_EXCEEDED;
 
     comment = calloc(1, sizeof(lxw_vml_obj));
     GOTO_LABEL_ON_MEM_ERROR(comment, mem_error);

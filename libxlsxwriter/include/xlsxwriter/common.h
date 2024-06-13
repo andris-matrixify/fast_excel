@@ -127,9 +127,6 @@ typedef enum lxw_error {
     /** Parameter exceeds Excel's limit of 255 characters. */
     LXW_ERROR_255_STRING_LENGTH_EXCEEDED,
 
-    /** String exceeds Excel's limit of 32,767 characters. */
-    LXW_ERROR_MAX_STRING_LENGTH_EXCEEDED,
-
     /** Error finding internal string index. */
     LXW_ERROR_SHARED_STRING_INDEX_NOT_FOUND,
 
